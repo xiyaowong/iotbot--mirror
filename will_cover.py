@@ -47,7 +47,7 @@ def main(cover=False):
 
 if __name__ == "__main__":
     try:
-        main(False)
+        main(True)
     except Exception as e:
         print(f'[ERROR]{e}')
     finally:
