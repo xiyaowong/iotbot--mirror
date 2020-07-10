@@ -7,8 +7,11 @@ import requests
 
 here = os.path.abspath(os.path.dirname(__file__))
 dist = os.path.join(here, 'dist')
+data_dir = os.path.join(here, 'data')
 if not os.path.exists(dist):
     os.makedirs(dist)
+if not os.path.exists(data_dir):
+    os.makedirs(data_dir)
 
 
 def main(cover=False):
@@ -68,27 +71,27 @@ if __name__ == "__main__":
             data.sort(key=lambda x: x['version'], reverse=True)
             data.sort(key=lambda x: x['os'])
             details = {'last_sync': int(time.time()), 'data': data}
-            with open('data.json', 'w') as f:  # 存所有数据
+            with open(f'{data_dir}/data.json', 'w') as f:  # 存所有数据
                 json.dump(details, f)
 
             latests = [i for i in data if i['version'] == data[0]['version']]
             # for linux
             linux = [i for i in latests if i['os'] == 'linux']
             for linux_i in linux:
-                with open(f'linux_{linux_i["arch"]}_latest.json', 'w') as f:
+                with open(f'{data_dir}/linux_{linux_i["arch"]}_latest.json', 'w') as f:
                     json.dump(linux_i, f)
             # for freebsd
             freebsd = [i for i in latests if i['os'] == 'freebsd']
             for freebsd_i in freebsd:
-                with open(f'freebsd_{freebsd_i["arch"]}_latest.json', 'w') as f:
+                with open(f'{data_dir}/freebsd_{freebsd_i["arch"]}_latest.json', 'w') as f:
                     json.dump(freebsd_i, f)
             # for darwin
             darwin = [i for i in latests if i['os'] == 'darwin']
             for darwin_i in darwin:
-                with open(f'darwin_{darwin_i["arch"]}_latest.json', 'w') as f:
+                with open(f'{data_dir}/darwin_{darwin_i["arch"]}_latest.json', 'w') as f:
                     json.dump(darwin_i, f)
             # for windows
             windows = [i for i in latests if i['os'] == 'windows']
             for windows_i in windows:
-                with open(f'windows_{windows_i["arch"]}_latest.json', 'w') as f:
+                with open(f'{data_dir}/windows_{windows_i["arch"]}_latest.json', 'w') as f:
                     json.dump(windows_i, f)
