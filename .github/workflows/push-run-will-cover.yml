@@ -7,7 +7,7 @@ on:
       types: started
 
 jobs:
-  pixiv:
+  iotbot-mirror:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
