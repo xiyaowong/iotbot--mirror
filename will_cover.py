@@ -69,7 +69,6 @@ if __name__ == "__main__":
                 'url': 'https://cdn.jsdelivr.net/gh/XiyaoWong/iotbot-mirror/dist/' + fileName
             })
             data.sort(key=lambda x: x['version'], reverse=True)
-            data.sort(key=lambda x: x['os'])
             details = {'last_sync': int(time.time()), 'data': data}
             with open(f'{data_dir}/data.json', 'w') as f:  # 存所有数据
                 json.dump(details, f)
