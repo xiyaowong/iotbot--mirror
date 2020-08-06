@@ -18,7 +18,7 @@ def main(cover=False):
     html = None
     for _ in range(2):
         try:
-            rep = requests.get('https://gitter.im/IOTQQTalk/IOTQQ', timeout=10)
+            rep = requests.get('https://gitter.im/OPQBOT/OPQ', timeout=10)
             rep.raise_for_status()
         except Exception:
             pass
@@ -28,7 +28,7 @@ def main(cover=False):
     if html is None:
         return
 
-    file_urls = re.findall(r'<a href="(https://files\.gitter\.im/[A-Za-z0-9]+/[A-Za-z0-9]+/iotbot_.*?)"', html)
+    file_urls = re.findall(r'<a href="(https://files\.gitter\.im/[A-Za-z0-9]+/[A-Za-z0-9]+/OPQBot_.*?)"', html)
     if not file_urls:
         return
     files = []
