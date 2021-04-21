@@ -2,6 +2,7 @@ import json
 import os
 import time
 import re
+from distutils.version import LooseVersion as V
 
 import requests
 
@@ -68,7 +69,7 @@ if __name__ == "__main__":
                 'fileName': fileName,
                 'url': 'https://cdn.jsdelivr.net/gh/XiyaoWong/iotbot-mirror/dist/' + fileName
             })
-            data.sort(key=lambda x: x['version'], reverse=True)
+            data.sort(key=lambda x: V(x['version']), reverse=True)
             details = {'last_sync': int(time.time()), 'data': data}
             with open(f'{data_dir}/data.json', 'w') as f:  # 存所有数据
                 json.dump(details, f)
